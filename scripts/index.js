@@ -144,14 +144,3 @@ const manageSpinner = (status) => {
 }
 
 loadProducts();
-
-const currentPath = window.location.pathname.replace('.html', '');
-document.querySelectorAll('nav a').forEach(link => {
-    let linkPath = link.getAttribute('href').replace('.html', '');
-    if (linkPath === '') linkPath = '/'; // normalize home
-    if (linkPath === currentPath) {
-        link.classList.add('bg-indigo-600', 'text-white');
-    } else {
-        link.classList.remove('bg-indigo-600', 'text-white');
-    }
-});
