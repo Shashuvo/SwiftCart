@@ -134,39 +134,13 @@
 
     <!-- Trending section -->
     <section class="w-full md:w-10/12 mx-auto">
-        <h1 class="font-bold text-2xl md:text-4xl md:pt-15 md:pb-8">Trending Now</h1>
-        <div>
-            <div class="card bg-base-100 w-96 shadow-sm">
-                <figure>
-                    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-                </figure>
-                <div class="card-body">
-                    <div class="flex justify-between">
-                        <div>
-                            <h1 class="text-indigo-600 bg-indigo-100 px-3 font-medium rounded-2xl">Men's clothing</h1>
-                        </div>
-                        <div>
-                            <h1 class="opacity-80"><i class="fa-solid fa-star text-yellow-400 mr-1"></i>4.7(500)</h1>
-                        </div>
-                    </div>
-                    <h2 class="mt-2 font-semibold text-xl">Card Title</h2>
-                    <p class="font-bold text-xl">Price: $400</p>
-                    <div class="card-actions mt-4 flex w-full space-x-1">
-                        <div class="flex-1">
-                            <button
-                                class="btn w-full bg-white rounded-lg hover:bg-indigo-100 hover:border-indigo-600 hover:text-indigo-600"><i
-                                    class="fa-regular fa-eye mr-1"></i>Details</button>
-                        </div>
-                        <div class="flex-1">
-                            <button
-                                class="btn w-full text-white rounded-lg hover:bg-indigo-100 bg-indigo-600 hover:border-indigo-600 hover:text-indigo-600"><i
-                                    class="fa-solid fa-cart-shopping mr-1"></i>Add</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <h1 class="font-bold text-2xl md:text-4xl pl-5 pt-12 pb-8 md:pl-0 md:pt-15 md:pb-8">Trending Now</h1>
+        <div id="trending-card-container"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-10 md:gap-12">
         </div>
     </section>
+    <!-- JS -->
+    <script src="/scripts/index.js"></script>
 </body>
 
 </html>
