@@ -170,3 +170,13 @@ const displayProducts = (products) => {
 };
 loadCategory();
 loadProducts();
+
+const currentPage = window.location.pathname.split("/").pop();
+
+document.querySelectorAll(".nav-link").forEach(link => {
+    const linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage || (currentPage === "" && linkPage === "index.html")) {
+        link.classList.add("bg-indigo-600", "text-white", "rounded-lg");
+    }
+});
