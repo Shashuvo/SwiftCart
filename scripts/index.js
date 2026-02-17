@@ -1,10 +1,12 @@
 const loadProducts = () => {
+    manageSpinner(true);
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
         .then(data => {
             const sortedProducts = data.sort((a, b) => b.rating.rate - a.rating.rate);
             const top3Products = sortedProducts.slice(0, 3);
-            displayProducts(top3Products)
+            displayProducts(top3Products);
+            manageSpinner(false);
         });
 }
 
@@ -127,6 +129,18 @@ const displayProducts = (products) => {
     document.querySelectorAll(".remove-from-cart-btn").forEach(btn => {
         btn.addEventListener("click", removeFromCart);
     });
+}
+
+const manageSpinner = (status) => {
+    const spinner = document.getElementById("spinner");
+    const trendProductContainer = document.getElementById("trending-card-container");
+    if (status) {
+        spinner.classList.remove("hidden");
+        trendProductContainer.classList.add("hidden");
+    } else {
+        spinner.classList.add("hidden");
+        trendProductContainer.classList.remove("hidden");
+    }
 }
 
 loadProducts();

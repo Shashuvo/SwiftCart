@@ -6,15 +6,23 @@ const loadCategory = () => {
 }
 
 const loadProducts = () => {
+    manageSpinner(true);
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
-        .then(data => displayProducts(data));
+        .then(data => {
+            displayProducts(data)
+            manageSpinner(false);
+        });
 }
 
 const loadProductsByCategory = (category) => {
+    manageSpinner(true);
     fetch(`https://fakestoreapi.com/products/category/${category}`)
         .then(res => res.json())
-        .then(data => displayProducts(data));
+        .then(data => {
+            displayProducts(data)
+            manageSpinner(false)
+        });
 }
 
 const loadProductDetails = async (id) => {
@@ -168,6 +176,20 @@ const displayProducts = (products) => {
         btn.addEventListener("click", removeFromCart);
     });
 };
+
+const manageSpinner = (status) => {
+    const spinner = document.getElementById("spinner");
+    const productContainer = document.getElementById("productCard-container");
+    if (status) {
+        spinner.classList.remove("hidden");
+        productContainer.classList.add("hidden");
+    } else {
+        spinner.classList.add("hidden");
+        productContainer.classList.remove("hidden");
+    }
+}
+
+
 loadCategory();
 loadProducts();
 
