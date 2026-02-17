@@ -1,3 +1,4 @@
+let currentActiveBtn = null;
 const loadCategory = () => {
     fetch("https://fakestoreapi.com/products/categories")
         .then(res => res.json())
@@ -10,21 +11,47 @@ const loadProducts = () => {
         .then(data => displayProducts(data));
 }
 
+const loadProductsByCategory = (category) => {
+    fetch(`https://fakestoreapi.com/products/category/${category}`)
+        .then(res => res.json())
+        .then(data => displayProducts(data));
+}
+
 const displayCategories = (categories) => {
     const allCategories = document.getElementById("categories-container");
-    const categoryBtn = document.createElement("button");
-    categoryBtn.innerHTML = `
-        <button class="btn bg-white rounded-3xl border-2 w-10/12 mx-auto md:w-full md:mx-0">All</button>
-        `;
-    allCategories.appendChild(categoryBtn);
+    allCategories.innerHTML = "";
+    // all
+    const allBtn = document.createElement("button");
+    allBtn.textContent = "All";
+    allBtn.className = "btn rounded-3xl border-2 w-10/12 mx-auto md:mx-0 md:w-auto bg-white text-black";
+    allBtn.addEventListener("click", () => {
+        loadProducts();
+        setActiveButton(allBtn);
+    });
+    allCategories.appendChild(allBtn);
+    setActiveButton(allBtn);
+    // Other categories
     categories.forEach(category => {
         const categoryBtn = document.createElement("button");
-        categoryBtn.innerHTML = `
-        <button class="btn bg-white rounded-3xl border-2 w-10/12 mx-auto md:w-full md:mx-0">${category}</button>
-        `;
+        categoryBtn.textContent = category;
+        categoryBtn.className = "btn rounded-3xl border-2 w-10/12 mx-auto md:mx-0 md:w-auto md:mx-0 bg-white text-black";
+        categoryBtn.addEventListener("click", () => {
+            loadProductsByCategory(category);
+            setActiveButton(categoryBtn);
+        });
         allCategories.appendChild(categoryBtn);
-    })
-}
+    });
+};
+
+const setActiveButton = (btn) => {
+    if (currentActiveBtn) {
+        currentActiveBtn.classList.remove("bg-indigo-600", "text-white");
+        currentActiveBtn.classList.add("bg-white", "text-black");
+    }
+    btn.classList.add("bg-indigo-600", "text-white");
+    btn.classList.remove("bg-white", "text-black");
+    currentActiveBtn = btn;
+};
 
 const displayProducts = (products) => {
     const productsCard = document.getElementById("productCard-container");
