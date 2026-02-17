@@ -29,7 +29,7 @@ const displayProducts = (products) => {
                     <h1 class="text-indigo-600 bg-indigo-100 px-3 font-medium rounded-2xl">${product.category}</h1>
                 </div>
                 <div>
-                    <h1 class="opacity-80"><i class="fa-solid fa-star text-yellow-400 mr-1"></i>${product.rating.rate}(${product.rating.count})</h1>
+                    <h1 class="opacity-80"><i class="fa-solid fa-star text-yellow-400 mr-1"></i>${product.rating.rate} (${product.rating.count})</h1>
                 </div>
             </div>
             <h2 class="mt-2 font-semibold text-xl min-h-[56px] line-clamp-2">${product.title}</h2>
